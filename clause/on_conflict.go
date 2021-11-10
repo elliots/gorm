@@ -16,7 +16,7 @@ func (OnConflict) Name() string {
 
 // Build build onConflict clause
 func (onConflict OnConflict) Build(builder Builder) {
-	if len(onConflict.Columns) > 0 {
+	if len(onConflict.Columns) > 0 && onConflict.OnConstraint == "" {
 		builder.WriteByte('(')
 		for idx, column := range onConflict.Columns {
 			if idx > 0 {
